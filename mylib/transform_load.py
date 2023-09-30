@@ -4,7 +4,7 @@ import csv
 
 #load the csv file and insert into a new sqlite3 database
 def load(
-    dataset="https://raw.githubusercontent.com/yabeizeng1121/Mini_Project5/main/cars.csv"
+    dataset="cars.csv"
 ):
     """Transforms and Loads data into the local SQLite3 database"""
     payload = csv.reader(open(dataset, newline=''), delimiter=';')
