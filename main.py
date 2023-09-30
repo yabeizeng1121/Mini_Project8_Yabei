@@ -10,17 +10,12 @@ def main():
     try:
         # Extract
         print("Extracting data...")
-        source_url = None
-                           
-        extract(url=source_url)
+        extract()  # 使用extract.py中的默认URL
         print("Data extraction completed successfully.\n")
 
         # Transform and Load
-        print("Transforming and loading data...")
-                           
-        dataset_path = None
-                           
-        load(dataset=dataset_path)                 
+        print("Transforming and loading data...")                         
+        load()                
         print("Data transformation and loading completed successfully.\n")
 
         # Query
