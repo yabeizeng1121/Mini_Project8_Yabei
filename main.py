@@ -10,12 +10,12 @@ def main():
     try:
         # Extract
         print("Extracting data...")
-        extract() 
-        print("Data extraction completed successfully.\n")
+        file_path = extract() 
+        print(f"Data extraction completed successfully. Saved to {file_path}\n")
 
         # Transform and Load
         print("Transforming and loading data...")                         
-        load()                
+        load(file_path)                
         print("Data transformation and loading completed successfully.\n")
 
         # Query
