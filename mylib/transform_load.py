@@ -8,7 +8,9 @@ def load(file_path="cars.csv"):
     
     with open(file_path, 'r', newline='') as f:
         csv_reader = csv.reader(f, delimiter=';')
+        next(csv_reader)
         payload = list(csv_reader)
+
     conn = sqlite3.connect('CarsDB.db')
     c = conn.cursor()
     c.execute("DROP TABLE IF EXISTS CarsDB")
