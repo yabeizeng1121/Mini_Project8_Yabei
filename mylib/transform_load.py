@@ -3,11 +3,12 @@ import csv
 #import os
 
 #load the csv file and insert into a new sqlite3 database
-def load(
-    dataset="cars.csv"
-):
+def load(file_path="cars.csv"):
     """Transforms and Loads data into the local SQLite3 database"""
-    payload = csv.reader(open(dataset, newline=''), delimiter=';')
+    
+    with open(file_path, 'r', newline='') as f:
+        csv_reader = csv.reader(f, delimiter=';')
+        payload = list(csv_reader)
     conn = sqlite3.connect('CarsDB.db')
     c = conn.cursor()
     c.execute("DROP TABLE IF EXISTS CarsDB")
