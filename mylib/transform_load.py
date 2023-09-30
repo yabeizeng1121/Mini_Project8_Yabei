@@ -10,7 +10,10 @@ def load(file_path="cars.csv"):
         csv_reader = csv.reader(f, delimiter=';')
         next(csv_reader)
         payload = list(csv_reader)
-
+        
+    for row in payload:
+        if len(row) != 9:
+            print(f"Incorrect number of fields in row: {row}")
     conn = sqlite3.connect('CarsDB.db')
     c = conn.cursor()
     c.execute("DROP TABLE IF EXISTS CarsDB")
