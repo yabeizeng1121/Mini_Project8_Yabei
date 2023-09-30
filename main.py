@@ -10,7 +10,7 @@ def main():
     try:
         # Extract
         print("Extracting data...")
-        extract()  # 使用extract.py中的默认URL
+        extract() 
         print("Data extraction completed successfully.\n")
 
         # Transform and Load
