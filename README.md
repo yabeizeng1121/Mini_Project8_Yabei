@@ -53,9 +53,13 @@ To run tests, execute:
 make test
 ```
 
-## Contributing
+## Results Preview
+![08656825e304ab7a3c3c217a4dd1f22](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/b0596f73-cc4a-4c0e-97f4-4910a0fe2f43)
+![148ab7de7d724fd90f491a1a67f9f00](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/63194df8-567c-44ab-8b13-156db3bd87cd)
+![259df8d8d44e9a8ef66399f6f084403](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/88f7111e-0201-4dcc-b804-2aecaea7a83c)
+![ef195efeb89e1cb56eade39a0d81e29](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/7477bafb-a6c4-44e4-94f2-35c3c20b55bb)
+![ff84b1627c3ddcb95e91619a4af6dbb](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/f7ac6671-ee3e-49d9-b66b-d7e431cae4fa)
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Reference
 https://github.com/nogibjj/sqlite-lab
