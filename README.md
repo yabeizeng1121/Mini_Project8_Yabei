@@ -1,7 +1,7 @@
 [![CI](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml)
 # Mini Project 5
 
-This repository contains the code and resources for Mini Project 5. The project focuses on extracting, transforming, and loading (ETL) operations using Python.
+This repository contains the code and resources for Mini Project 5. The project focuses on extracting, transforming, and loading operations using Python.
 
 ## Overview
 
@@ -11,7 +11,7 @@ This repository contains the code and resources for Mini Project 5. The project 
 
 ## Requirements
 
-- Python 3.x
+- Python 
 - SQLite
 - Additional Python libraries as listed in `requirements.txt`.
 
