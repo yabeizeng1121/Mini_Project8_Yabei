@@ -24,14 +24,14 @@ def load_data(dataset_path="cars.csv"):
         cursor = conn.cursor()
         
         # Check if the table exists
-        cursor.execute("SHOW TABLES FROM default LIKE 'CarsDB'")
+        cursor.execute("SHOW TABLES FROM default LIKE 'carsDB'")
         result = cursor.fetchall()
         
         # If the table doesn't exist, create it
         if not result:
             cursor.execute(
                 """
-                CREATE TABLE IF NOT EXISTS CarsDB (
+                CREATE TABLE IF NOT EXISTS carsDB (
                     brand string,
                     Model string,
                     Body  string,
@@ -45,7 +45,7 @@ def load_data(dataset_path="cars.csv"):
             # Insert data into the table
             for _, row in data_frame.iterrows():
                 values = (_,) + tuple(row)
-                cursor.execute(f"INSERT INTO CarsDB VALUES {values}")
+                cursor.execute(f"INSERT INTO carsDB VALUES {values}")
         
         cursor.close()
 
