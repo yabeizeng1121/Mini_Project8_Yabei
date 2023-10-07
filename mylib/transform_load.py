@@ -11,9 +11,9 @@ def load_data(dataset_path="cars.csv"):
     
     # Load environment variables
     load_dotenv()
-    db_server = os.getenv("DB_SERVER")
-    token = os.getenv("DB_TOKEN")
-    api_path = os.getenv("DB_API_PATH")
+    db_server = os.getenv("SERVER_HOSTNAME")
+    token = os.getenv("ACCESS_TOKEN")
+    api_path = os.getenv("HTTP_PATH")
     
     # Connect to Azure Databricks
     with sql.connect(
