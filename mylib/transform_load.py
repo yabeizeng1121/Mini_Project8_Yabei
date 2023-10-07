@@ -32,9 +32,10 @@ def load_data(dataset_path="cars.csv"):
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS CarsDB (
-                    id int,
                     brand string,
-                    model string,
+                    Model string,
+                    Body  string,
+                    Mileage int,
                     year int,
                     price float
                 )
