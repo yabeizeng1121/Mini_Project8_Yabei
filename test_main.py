@@ -11,6 +11,8 @@ def test_main_functionality():
          patch('main.query') as mock_query, \
          patch('main.process_cli_args') as mock_cli_args:
 
+        mock_extract.return_value = "mocked_file_path.csv"  # Mock the return value of extract function
+
         # Test extract functionality
         mock_cli_args.return_value = lambda: None
         mock_cli_args.return_value.task = 'data_extraction'
@@ -18,7 +20,7 @@ def test_main_functionality():
         mock_extract.assert_called_once()
         mock_print.assert_has_calls([
             call('Initiating data extraction...'),
-            call('Extraction successful. Data saved at None\n')
+            call('Extraction successful. Data saved at mocked_file_path.csv\n')
         ])
 
         # Reset mocks
