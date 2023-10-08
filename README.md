@@ -1,66 +1,46 @@
 [![CI](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml)
 # Mini Project 6
-
-This repository contains the code and resources for Mini Project 5. The project focuses on extracting, transforming, and loading operations using Python.
-
-## Overview
-
-- **Extract**: Download data from a given URL.
-- **Transform & Load**: Read the downloaded CSV data, transform it, and load it into an SQLite database.
-- **Query**: Query the SQLite database and perform various operations.
+The ETL-Query tool is designed to streamline the process of extracting, transforming, loading (ETL) and querying data. It specifically caters to handling the 'cars' dataset. The tool offers flexibility by allowing users to either execute each phase of the ETL process independently or execute the complete ETL process in a single command.
 
 ## Requirements
+1. Design a complex SQL query involving joins, aggregation, and sorting.
+2. Provide an explanation for what the query is doing and the expected results.
 
-- Python 
-- SQLite
-- Additional Python libraries as listed in `requirements.txt`.
 
-## Setup
+## Preparation
+1. Clone the GitHub repository.
+2. Ensure that you have the necessary Python libraries installed.
+3. Familiarize yourself with the four main files:
+    - `__init__.py`: Module initialization file.
+    - `extract.py`: Contains functions to extract data from the given URL.
+    - `transform_load.py`: Houses functions to transform the dataset type and load it to Databricks.
+    - `query.py`: Used to request and perform SQL queries on the dataset.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yabeizeng1121/Mini_Project5.git
-   cd Mini_Project5
-   ```
+## Check Format
+The tool expects the dataset in the following format:
+- Filename: `cars.csv`
+- Data columns and structure to be confirmed (based on your dataset's structure).
 
-2. Install the required Python libraries:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Steps Guide
+1. **Data Extraction**
+    ```bash
+    make extract
+    ```
+    This command extracts data from the specified URL and saves it to a local CSV file.
 
-3. Run the main script to perform ETL operations:
-   ```bash
-   python main.py
-   ```
+2. **Data Transformation and Loading**
+    ```bash
+    make transform_load
+    ```
+    This command transforms the dataset type and loads it to Databricks.
 
-## Usage
-
-- To extract data, run:
-  ```bash
-  make extract
-  ```
-
-- To transform and load data into the SQLite database, run:
-  ```bash
-  make transform_load
-  ```
-
-- To query the database, simply run the `main.py` script or use the functions provided in the `query.py` module.
-
-## Testing
-
-To run tests, execute:
-```bash
-make test
-```
+3. **Data Querying**
+    ```bash
+    make query
+    ```
+    Use this command to perform SQL queries on the loaded dataset.
+    This command performs all the above steps in sequence: it extracts the data, loads it to Databricks, and then queries it.
 
 ## Results Preview
-![08656825e304ab7a3c3c217a4dd1f22](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/b0596f73-cc4a-4c0e-97f4-4910a0fe2f43)
-![148ab7de7d724fd90f491a1a67f9f00](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/63194df8-567c-44ab-8b13-156db3bd87cd)
-![259df8d8d44e9a8ef66399f6f084403](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/88f7111e-0201-4dcc-b804-2aecaea7a83c)
-![ef195efeb89e1cb56eade39a0d81e29](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/7477bafb-a6c4-44e4-94f2-35c3c20b55bb)
-![ff84b1627c3ddcb95e91619a4af6dbb](https://github.com/nogibjj/Mini_Project5_Yabei_New/assets/143656459/f7ac6671-ee3e-49d9-b66b-d7e431cae4fa)
 
 
-## Reference
-https://github.com/nogibjj/sqlite-lab
