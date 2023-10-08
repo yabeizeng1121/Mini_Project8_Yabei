@@ -1,5 +1,5 @@
 [![CI](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml)
-# Mini Project 5
+# Mini Project 6
 
 This repository contains the code and resources for Mini Project 5. The project focuses on extracting, transforming, and loading operations using Python.
 
