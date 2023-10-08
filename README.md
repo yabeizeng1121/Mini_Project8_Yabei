@@ -41,6 +41,37 @@ The tool expects the dataset in the following format:
     Use this command to perform SQL queries on the loaded dataset.
     This command performs all the above steps in sequence: it extracts the data, loads it to Databricks, and then queries it.
 
+## Explanation of Query
+The `query.py` script provides functionalities to execute SQL queries on a Databricks database. It not only executes the queries but also maintains a log of the executed query and its result in a markdown file.
+
+### Key Components
+
+1. **Imported Libraries**:
+    - `os`: Access environment variables.
+    - `databricks`: Interface with Databricks using SQL.
+    - `dotenv`: Load environment variables from a `.env` file.
+
+2. **LOG_PATH**:
+    A global variable specifying the path to the markdown log file where query logs will be maintained.
+
+3. **`add_to_log(query_str, response="N/A")` Function**:
+    - **Purpose**: Append a provided query and its corresponding response to the markdown log file.
+    - **Parameters**:
+        - `query_str`: The SQL query string that was executed.
+        - `response`: The result of the query. By default, it's set to "N/A".
+    - **Implementation**: The function writes the query and its response in separate code blocks in the markdown file, making it easy to review and understand.
+
+4. **`query(query_str)` Function**:
+    - **Purpose**: Execute a user-provided SQL query on the Databricks database.
+    - **Parameters**:
+        - `query_str`: The SQL query string to be executed.
+    - **Implementation**:
+        1. Load environment variables from a `.env` file.
+        2. Establish a connection to the Databricks server using the loaded credentials.
+        3. Execute the provided SQL query.
+        4. Fetch and return the result of the query.
+        5. Log the executed query and its result using the `add_to_log` function.
+   
 ## Results Preview
 
 
