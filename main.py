@@ -7,15 +7,17 @@ from mylib.extract import extract
 from mylib.transform_load import load
 from mylib.query import query
 
+
 def process_cli_args():
     """Manage command line inputs"""
     cli_parser = argparse.ArgumentParser(description="Enhanced ETL-Query tool")
     cli_parser.add_argument(
         "task",
         choices=["data_extraction", "data_loading", "data_query", "complete_etl"],
-        help="Select the task to execute"
+        help="Select the task to execute",
     )
     return cli_parser.parse_args()
+
 
 def main():
     cli_args = process_cli_args()
@@ -47,6 +49,7 @@ def main():
 
     except Exception as err:
         print(f"An issue occurred: {err}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()
