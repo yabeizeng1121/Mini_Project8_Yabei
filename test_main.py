@@ -63,11 +63,12 @@ def test_main_functionality():
 
         mock_query.assert_called_once()
         mock_print.assert_has_calls([
-            call('Starting the full ETL process...'),
-            call('Extraction successful. Data saved at None\n'),
-            call('Transformation and loading completed.\n'),
-            call('Querying process completed.\n')
-        ])
+        call('Starting the full ETL process...'),
+        call('Extraction successful. Data saved at mocked_file_path.csv\n'),
+        call('Transformation and loading completed.\n'),
+        call('Querying process completed.\n')
+    ])
+
 
 if __name__ == "__main__":
     pytest.main()
