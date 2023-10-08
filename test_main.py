@@ -54,10 +54,13 @@ def test_main_functionality():
         mock_print.reset_mock()
 
         # Test complete_etl functionality
+        # Test complete_etl functionality
         mock_cli_args.return_value.task = 'complete_etl'
         main()
         mock_extract.assert_called_once()
-        mock_load.assert_called_once_with(None)
+        mock_load.assert_called_once_with('mocked_file_path.csv')
+
+
         mock_query.assert_called_once()
         mock_print.assert_has_calls([
             call('Starting the full ETL process...'),
