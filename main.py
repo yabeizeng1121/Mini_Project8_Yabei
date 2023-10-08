@@ -17,7 +17,7 @@ def process_cli_args():
     )
     return cli_parser.parse_args()
 
-def execute_task():
+def main():
     cli_args = process_cli_args()
 
     try:
