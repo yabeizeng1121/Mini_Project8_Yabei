@@ -35,7 +35,7 @@ generate_and_push:
 	fi
 
 extract:
-	python main.py extract
+	python main.py data_extraction
 
 transform_load: 
 	python main.py transform_load
