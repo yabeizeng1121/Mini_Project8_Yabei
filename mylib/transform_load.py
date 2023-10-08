@@ -3,7 +3,7 @@ import pandas as pd
 from databricks import sql
 from dotenv import load_dotenv
 
-def load_data(dataset_path="cars.csv"):
+def load(dataset_path="cars.csv"):
     """Load data into the Azure Databricks database"""
     
     # Read the CSV file into a pandas DataFrame
