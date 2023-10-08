@@ -12,7 +12,7 @@ def add_to_log(query_str, response="N/A"):
         log_file.write(f"```sql\n{query_str}\n```\n\n")
         log_file.write(f"```Databricks response\n{response}\n```\n\n")
 
-def execute_query(query_str):
+def query(query_str):
     """Execute a user-provided query"""
 
     load_dotenv()
