@@ -49,4 +49,4 @@ def main():
         print(f"An issue occurred: {err}", file=sys.stderr)
 
 if __name__ == "__main__":
-    execute_task()
+    main()
