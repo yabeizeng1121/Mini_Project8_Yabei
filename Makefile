@@ -39,6 +39,7 @@ extract:
 
 transform_load: 
 	python main.py transform_load
-
+query:
+	python mylib/query.py
 		
 all: install lint test format deploy
