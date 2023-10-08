@@ -11,7 +11,7 @@ def test_main_functionality():
          patch('main.query') as mock_query, \
          patch('main.process_cli_args') as mock_cli_args:
 
-        mock_extract.return_value = "mocked_file_path.csv"  # Mock the return value of extract function
+        mock_extract.return_value = "mocked_file_path.csv" 
 
         # Test extract functionality
         mock_cli_args.return_value = lambda: None
