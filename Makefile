@@ -38,7 +38,8 @@ extract:
 	python main.py data_extraction
 
 transform_load: 
-	python main.py transform_load
+	python main.py data_loading
+
 query:
 	python mylib/query.py
 		
