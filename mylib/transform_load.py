@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 
 def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
     """Transforms and Loads data into the local databricks database"""
-    df = pd.read_csv(dataset, delimiter=",", skiprows=1)
-    df2 = pd.read_csv(dataset2, delimiter=",", skiprows=1)
+    df = pd.read_csv(dataset, delimiter=",")
+    df2 = pd.read_csv(dataset2, delimiter=",")
     
     load_dotenv()
     server_h = os.getenv("SERVER_HOSTNAME")
