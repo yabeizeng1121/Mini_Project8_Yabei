@@ -1,53 +1,68 @@
 import os
-import pandas as pd
 from databricks import sql
+import pandas as pd
 from dotenv import load_dotenv
 
-def load(dataset_path="cars.csv"):
-    """Load data into the Azure Databricks database"""
+# Load the csv file and insert into databricks
+def load(dataset="data/dem_candidates.csv", dataset2="data/rep_candidates.csv"):
+    """Transforms and Loads data into the local databricks database"""
+    df = pd.read_csv(dataset, delimiter=",", skiprows=1)
+    df2 = pd.read_csv(dataset2, delimiter=",", skiprows=1)
     
-    # Read the CSV file into a pandas DataFrame
-    data_frame = pd.read_csv(dataset_path, delimiter=",", skiprows=1)
-    
-    # Load environment variables
     load_dotenv()
-    db_server = os.getenv("SERVER_HOSTNAME")
-    token = os.getenv("ACCESS_TOKEN")
-    api_path = os.getenv("HTTP_PATH")
+    server_h = os.getenv("SERVER_HOSTNAME")
+    access_token = os.getenv("ACCESS_TOKEN")
+    http_path = os.getenv("HTTP_PATH")
     
-    # Connect to Azure Databricks
     with sql.connect(
-        server_hostname=db_server,
-        http_path=api_path,
-        access_token=token,
-    ) as conn:
-        cursor = conn.cursor()
+        server_hostname=server_h,
+        http_path=http_path,
+        access_token=access_token,
+    ) as connection:
+        c = connection.cursor()
         
-        # Check if the table exists
-        cursor.execute("SHOW TABLES FROM default LIKE 'carsDB'")
-        result = cursor.fetchall()
-        
-        # If the table doesn't exist, create it
+        # Check if DemCandidatesDB table exists
+        c.execute("SHOW TABLES FROM default LIKE 'dem_candidates*'")
+        result = c.fetchall()
         if not result:
-            cursor.execute(
+            c.execute(
                 """
-                CREATE TABLE IF NOT EXISTS carsDB (
-                    brand string,
-                    Model string,
-                    Body  string,
-                    Mileage int,
-                    year int,
-                    price float
+                CREATE TABLE IF NOT EXISTS DemCandidatesDB (
+                    Name string,
+                    Age int,
+                    Occupation string,
+                    State string,
+                    Donations int
                 )
                 """
             )
-            
-            # Insert data into the table
-            for _, row in data_frame.iterrows():
-                values = (_,) + tuple(row)
-                cursor.execute(f"INSERT INTO carsDB VALUES {values}")
+            # Insert data into DemCandidatesDB
+            for _, row in df.iterrows():
+                convert = tuple(row)
+                c.execute(f"INSERT INTO DemCandidatesDB VALUES {convert}")
         
-        cursor.close()
+        # Check if RepCandidatesDB table exists
+        c.execute("SHOW TABLES FROM default LIKE 'rep_candidates*'")
+        result = c.fetchall()
+        if not result:
+            c.execute(
+                """
+                CREATE TABLE IF NOT EXISTS RepCandidatesDB (
+                    Name string,
+                    Age int,
+                    Occupation string,
+                    State string,
+                    Donations int
+                )
+                """
+            )
+            # Insert data into RepCandidatesDB
+            for _, row in df2.iterrows():
+                convert = tuple(row)
+                c.execute(f"INSERT INTO RepCandidatesDB VALUES {convert}")
+        
+        c.close()
 
-    return "Data loaded successfully"
+    return "success"
 
+# load()
