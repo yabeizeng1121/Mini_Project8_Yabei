@@ -9,7 +9,7 @@ format:
 	black *.py 
 
 lint:
-	ruff check *.py mylib/*.py
+	flake8 *.py mylib/*.py
 
 container-lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile
@@ -18,10 +18,12 @@ refactor: format lint
 
 deploy:
 	#deploy goes here
+		
+all: install lint test format deploy
 
 generate_and_push:
 	# Create the markdown file 
-	python test_main.py  # Replace with the actual command to generate the markdown
+	python test_main.py  
 
 	# Add, commit, and push the generated files to GitHub
 	@if [ -n "$$(git status --porcelain)" ]; then \
@@ -35,12 +37,10 @@ generate_and_push:
 	fi
 
 extract:
-	python main.py data_extraction
+	python main.py extract
 
 transform_load: 
-	python main.py data_loading
+	python main.py transform_load
 
 query:
-	python mylib/query.py
-		
-all: install lint test format deploy
+	python main.py general_query "SELECT Name, State, AVG(Donations) as avg_donations FROM DemCandidatesDB GROUP BY Name, State ORDER BY avg_donations DESC LIMIT 10"
