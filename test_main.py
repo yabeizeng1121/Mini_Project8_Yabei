@@ -33,10 +33,10 @@ def test_general_query():
             "python",
             "main.py",
             "general_query",
-            """SELECT Name, State, AVG(Donations) as avg_donations
-            FROM DemCandidatesDB
-            GROUP BY Name, State
-            ORDER BY avg_donations DESC
+            """SELECT Performer, Show, Show_Start,Show_End
+            FROM showdataDB
+            GROUP BY Performer, Show
+            ORDER BY Show_Start DESC
             LIMIT 10""",
         ],
         capture_output=True,
