@@ -28,9 +28,9 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
             """
             CREATE TABLE IF NOT EXISTS DemCandidatesDB (
                 Performer string,
-                age int,
-                occupation string,
-                education string
+                Score_per_year float,
+                Total_score float,
+                Show string
             )
             """
         )
