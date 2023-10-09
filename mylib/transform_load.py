@@ -1,21 +1,24 @@
-"""
-Transforms and Loads data into Azure Databricks
-"""
+
+import csv
 import os
 from databricks import sql
-import pandas as pd
 from dotenv import load_dotenv
 
 def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
-    """Transforms and Loads data into the local databricks database"""
-    df = pd.read_csv(dataset, delimiter=",")
-    df2 = pd.read_csv(dataset2, delimiter=",")
-    
+    # 使用csv模块读取CSV文件
+    with open(dataset, 'r') as file:
+        reader = csv.reader(file)
+        df = list(reader)
+
+    with open(dataset2, 'r') as file:
+        reader = csv.reader(file)
+        df2 = list(reader)
+
     load_dotenv()
     server_h = os.getenv("SERVER_HOSTNAME")
     access_token = os.getenv("ACCESS_TOKEN")
     http_path = os.getenv("HTTP_PATH")
-    
+
     with sql.connect(
         server_hostname=server_h,
         http_path=http_path,
