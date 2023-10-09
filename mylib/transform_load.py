@@ -15,21 +15,11 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         df2 = list(reader)
 
     
-    for row in df[1:]: 
-        values = tuple(row)
-        c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
-
-  
-    for row in df2[1:]:  
-        values = tuple(row)
-        c.execute(f"INSERT INTO showdataDB VALUES {values}")
-
-
     load_dotenv()
     server_h = os.getenv("SERVER_HOSTNAME")
     access_token = os.getenv("ACCESS_TOKEN")
     http_path = os.getenv("HTTP_PATH")
-
+    
     with sql.connect(
         server_hostname=server_h,
         http_path=http_path,
@@ -37,7 +27,7 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
     ) as connection:
         c = connection.cursor()
         
-        # Create DemCandidatesDB table if not exists
+        # Create performerscoresDB table if not exists
         c.execute(
             """
             CREATE TABLE IF NOT EXISTS performerscoresDB (
@@ -49,12 +39,12 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
             """
         )
         
-        # Insert data into DemCandidatesDB
-        for _, row in df.iterrows():
+        # Insert data into performerscoresDB
+        for row in df[1:]:  # Skip the header row
             values = tuple(row)
             c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
         
-        # Create RepIncumbentsDB table if not exists
+        # Create showdataDB table if not exists
         c.execute(
             """
             CREATE TABLE IF NOT EXISTS showdataDB (
@@ -67,11 +57,12 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
             """
         )
         
-        # Insert data into RepIncumbentsDB
-        for _, row in df2.iterrows():
+        # Insert data into showdataDB
+        for row in df2[1:]:  # Skip the header row
             values = tuple(row)
             c.execute(f"INSERT INTO showdataDB VALUES {values}")
         
         c.close()
-
+    
     return "success"
+
