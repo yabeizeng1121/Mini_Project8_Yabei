@@ -1,81 +1,51 @@
-"""Testing main.py functionality"""
+"""
+Test goes here
+"""
 
-import pytest
-from unittest.mock import patch, call
-from main import main
+import subprocess
 
+def test_extract():
+    """tests extract()"""
+    result = subprocess.run(
+        ["python", "main.py", "extract"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert result.returncode == 0
+    assert "Extracting data..." in result.stdout
 
-def test_main_functionality():
-    with patch("builtins.print") as mock_print, patch(
-        "main.extract"
-    ) as mock_extract, patch("main.load") as mock_load, patch(
-        "main.query"
-    ) as mock_query, patch(
-        "main.process_cli_args"
-    ) as mock_cli_args:
+def test_transform_load():
+    """tests transform_load()"""
+    result = subprocess.run(
+        ["python", "main.py", "transform_load"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert result.returncode == 0
+    assert "Transforming and loading data..." in result.stdout
 
-        mock_extract.return_value = "mocked_file_path.csv"
-
-        # Test extract functionality
-        mock_cli_args.return_value = lambda: None
-        mock_cli_args.return_value.task = "data_extraction"
-        main()
-        mock_extract.assert_called_once()
-        mock_print.assert_has_calls(
-            [
-                call("Initiating data extraction..."),
-                call("Extraction successful. Data saved at mocked_file_path.csv\n"),
-            ]
-        )
-
-        # Reset mocks
-        mock_extract.reset_mock()
-        mock_print.reset_mock()
-
-        # Test transform_load functionality
-        mock_cli_args.return_value.task = "data_loading"
-        main()
-        mock_load.assert_called_once_with("cars.csv")
-        mock_print.assert_has_calls(
-            [
-                call("Initiating data transformation and loading..."),
-                call("Transformation and loading completed.\n"),
-            ]
-        )
-
-        # Reset mocks
-        mock_load.reset_mock()
-        mock_print.reset_mock()
-
-        # Test data_query functionality
-        mock_cli_args.return_value.task = "data_query"
-        main()
-        mock_query.assert_called_once()
-        mock_print.assert_has_calls(
-            [call("Initiating data querying..."), call("Querying process completed.\n")]
-        )
-
-        # Reset mocks
-        mock_query.reset_mock()
-        mock_print.reset_mock()
-
-        # Test complete_etl functionality
-        # Test complete_etl functionality
-        mock_cli_args.return_value.task = "complete_etl"
-        main()
-        mock_extract.assert_called_once()
-        mock_load.assert_called_once_with("mocked_file_path.csv")
-
-        mock_query.assert_called_once()
-        mock_print.assert_has_calls(
-            [
-                call("Starting the full ETL process..."),
-                call("Extraction successful. Data saved at mocked_file_path.csv\n"),
-                call("Transformation and loading completed.\n"),
-                call("Querying process completed.\n"),
-            ]
-        )
-
+def test_general_query():
+    """tests general_query()"""
+    result = subprocess.run(
+        [
+            "python",
+            "main.py",
+            "general_query",
+            """SELECT Name, State, AVG(Donations) as avg_donations
+            FROM DemCandidatesDB
+            GROUP BY Name, State
+            ORDER BY avg_donations DESC
+            LIMIT 10""",
+        ],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert result.returncode == 0
 
 if __name__ == "__main__":
-    pytest.main()
+    test_extract()
+    test_transform_load()
+    test_general_query()
