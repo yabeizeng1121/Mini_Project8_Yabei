@@ -6,7 +6,7 @@ from databricks import sql
 import pandas as pd
 from dotenv import load_dotenv
 
-def load(dataset="data/dem_candidates.csv", dataset2="data/rep_incumbents.csv"):
+def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
     """Transforms and Loads data into the local databricks database"""
     df = pd.read_csv(dataset, delimiter=",", skiprows=1)
     df2 = pd.read_csv(dataset2, delimiter=",", skiprows=1)
