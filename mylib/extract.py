@@ -4,10 +4,10 @@ import pandas as pd
 
 
 def extract(
-    url="https://github.com/nogibjj/mini_project6_yabei/blob/main/data/rep_candidates.csv?raw=true",
-    url2="https://github.com/nogibjj/mini_project6_yabei/blob/main/data/rep_incumbents.csv?raw=true",
-    file_path="data/rep_candidates.csv",
-    file_path2="data/rep_incumbents.csv",
+    url="https://github.com/nogibjj/mini_project6_yabei/blob/main/data/data/performer-scores.csv?raw=true",
+    url2="https://github.com/nogibjj/mini_project6_yabei/blob/main/data/data/show-data.csv?raw=true",
+    file_path="data/performer-scores.csv",
+    file_path2="data/show-data.csv",
     directory="data",
 ):
     """Extract a url to a file path"""
