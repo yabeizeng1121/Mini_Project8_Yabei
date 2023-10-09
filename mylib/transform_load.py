@@ -26,7 +26,7 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Create DemCandidatesDB table if not exists
         c.execute(
             """
-            CREATE TABLE IF NOT EXISTS DemCandidatesDB (
+            CREATE TABLE IF NOT EXISTS performerscoresDB (
                 Performer string,
                 Score_per_year float,
                 Total_score float,
@@ -38,17 +38,17 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Insert data into DemCandidatesDB
         for _, row in df.iterrows():
             values = tuple(row)
-            c.execute(f"INSERT INTO DemCandidatesDB VALUES {values}")
+            c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
         
         # Create RepIncumbentsDB table if not exists
         c.execute(
             """
-            CREATE TABLE IF NOT EXISTS RepIncumbentsDB (
+            CREATE TABLE IF NOT EXISTS showdataDB (
                 Performer string,
                 Show string,
-                age int,
-                occupation string,
-                Show string
+                Show_Start string,
+                Show_End string,
+                CharEnd string
             )
             """
         )
@@ -56,7 +56,7 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Insert data into RepIncumbentsDB
         for _, row in df2.iterrows():
             values = tuple(row)
-            c.execute(f"INSERT INTO RepIncumbentsDB VALUES {values}")
+            c.execute(f"INSERT INTO showdataDB VALUES {values}")
         
         c.close()
 
