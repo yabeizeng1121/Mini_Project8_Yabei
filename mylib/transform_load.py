@@ -27,8 +27,7 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         c.execute(
             """
             CREATE TABLE IF NOT EXISTS DemCandidatesDB (
-                id int,
-                name string,
+                Performer string,
                 age int,
                 occupation string,
                 education string
@@ -45,11 +44,11 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         c.execute(
             """
             CREATE TABLE IF NOT EXISTS RepIncumbentsDB (
-                id int,
-                name string,
+                Performer string,
+                Show string,
                 age int,
                 occupation string,
-                education string
+                Show string
             )
             """
         )
