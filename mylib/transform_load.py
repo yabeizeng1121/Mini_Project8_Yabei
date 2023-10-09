@@ -38,9 +38,11 @@ def load(dataset="data/dem_candidates.csv", dataset2="data/rep_candidates.csv"):
                 """
             )
             # Insert data into DemCandidatesDB
-            for _, row in df.iterrows():
-                convert = tuple(row)
-                c.execute(f"INSERT INTO DemCandidatesDB VALUES {convert}")
+            # for _, row in df.iterrows():
+            #     convert = tuple(row)
+            #     c.execute(f"INSERT INTO DemCandidatesDB VALUES {convert}")
+            df.write.saveAsTable("DemCandidatesDB", mode="overwrite")
+
         
         # Check if RepCandidatesDB table exists
         c.execute("SHOW TABLES FROM default LIKE 'rep_candidates*'")
