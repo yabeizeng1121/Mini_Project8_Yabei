@@ -1,12 +1,15 @@
+"""
+Transforms and Loads data into Azure Databricks
+"""
 import os
-from databricks import sql
 import pandas as pd
+from databricks import sql
 from dotenv import load_dotenv
 
-def load(dataset="data/dem_candidates.csv", dataset2="data/rep_candidates.csv"):
+def load(dataset="data/dem_candidates.csv", dataset2="data/rep_incumbents.csv"):
     """Transforms and Loads data into the local databricks database"""
     df = pd.read_csv(dataset, delimiter=",", skiprows=1)
-    df2 = pd.read_csv(dataset2, delimiter=",", skiprows=1, encoding='ISO-8859-1')
+    df2 = pd.read_csv(dataset2, delimiter=",", skiprows=1)
     
     load_dotenv()
     server_h = os.getenv("SERVER_HOSTNAME")
@@ -20,45 +23,41 @@ def load(dataset="data/dem_candidates.csv", dataset2="data/rep_candidates.csv"):
     ) as connection:
         c = connection.cursor()
         
-        # Check if DemCandidatesDB table exists
-        c.execute("SHOW TABLES FROM default LIKE 'dem_candidates*'")
-        result = c.fetchall()
-        if not result:
-            c.execute(
-                """
-                CREATE TABLE IF NOT EXISTS DemCandidatesDB (
-                    Name string,
-                    Age int,
-                    Occupation string,
-                    State string,
-                    Donations int
-                )
-                """
+        # Create DemCandidatesDB table if not exists
+        c.execute(
+            """
+            CREATE TABLE IF NOT EXISTS DemCandidatesDB (
+                id int,
+                name string,
+                age int,
+                occupation string,
+                education string
             )
-            # Insert data into DemCandidatesDB
-            for _, row in df.iterrows():
-                convert = tuple(row)
-                c.execute(f"INSERT INTO DemCandidatesDB VALUES {convert}")
-
-        # Check if RepCandidatesDB table exists
-        c.execute("SHOW TABLES FROM default LIKE 'rep_candidates*'")
-        result = c.fetchall()
-        if not result:
-            c.execute(
-                """
-                CREATE TABLE IF NOT EXISTS RepCandidatesDB (
-                    Name string,
-                    Age int,
-                    Occupation string,
-                    State string,
-                    Donations int
-                )
-                """
+            """
+        )
+        
+        # Insert data into DemCandidatesDB
+        for _, row in df.iterrows():
+            values = tuple(row)
+            c.execute(f"INSERT INTO DemCandidatesDB VALUES {values}")
+        
+        # Create RepIncumbentsDB table if not exists
+        c.execute(
+            """
+            CREATE TABLE IF NOT EXISTS RepIncumbentsDB (
+                id int,
+                name string,
+                age int,
+                occupation string,
+                education string
             )
-            # Insert data into RepCandidatesDB
-            for _, row in df2.iterrows():
-                convert = tuple(row)
-                c.execute(f"INSERT INTO RepCandidatesDB VALUES {convert}")
+            """
+        )
+        
+        # Insert data into RepIncumbentsDB
+        for _, row in df2.iterrows():
+            values = tuple(row)
+            c.execute(f"INSERT INTO RepIncumbentsDB VALUES {values}")
         
         c.close()
 
