@@ -1,4 +1,3 @@
-
 import os
 import requests
 import pandas as pd
@@ -20,7 +19,10 @@ def extract(
     with requests.get(url2) as r:
         with open(file_path2, "wb") as f:
             f.write(r.content)
-    df = pd.read_csv(file_path2, engine='python', error_bad_lines=False)
+    try:
+        df = pd.read_csv(file_path2)
+    except pd.errors.ParserError as e:
+        print(f"Warning: Error parsing CSV file {file_path2}. Error: {e}")
 
     df_subset = df.head(121)
 
