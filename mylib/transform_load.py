@@ -3,20 +3,16 @@ from databricks import sql
 import pandas as pd
 from dotenv import load_dotenv
 
-# Load the csv file and insert into databricks
 def load(dataset="data/dem_candidates.csv", dataset2="data/rep_candidates.csv"):
     """Transforms and Loads data into the local databricks database"""
     df = pd.read_csv(dataset, delimiter=",", skiprows=1)
     df2 = pd.read_csv(dataset2, delimiter=",", skiprows=1, encoding='ISO-8859-1')
-
     
     load_dotenv()
     server_h = os.getenv("SERVER_HOSTNAME")
     access_token = os.getenv("ACCESS_TOKEN")
     http_path = os.getenv("HTTP_PATH")
     
-
-
     with sql.connect(
         server_hostname=server_h,
         http_path=http_path,
@@ -44,9 +40,6 @@ def load(dataset="data/dem_candidates.csv", dataset2="data/rep_candidates.csv"):
                 convert = tuple(row)
                 c.execute(f"INSERT INTO DemCandidatesDB VALUES {convert}")
 
-
-
-        
         # Check if RepCandidatesDB table exists
         c.execute("SHOW TABLES FROM default LIKE 'rep_candidates*'")
         result = c.fetchall()
@@ -70,5 +63,3 @@ def load(dataset="data/dem_candidates.csv", dataset2="data/rep_candidates.csv"):
         c.close()
 
     return "success"
-
-# load()
