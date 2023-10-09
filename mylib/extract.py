@@ -1,3 +1,4 @@
+
 import os
 import requests
 import pandas as pd
@@ -19,7 +20,7 @@ def extract(
     with requests.get(url2) as r:
         with open(file_path2, "wb") as f:
             f.write(r.content)
-    df = pd.read_csv(file_path2, error_bad_lines=False)
+    df = pd.read_csv(file_path2, engine='python', error_bad_lines=False)
 
     df_subset = df.head(121)
 
