@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 def load(dataset="data/dem_candidates.csv", dataset2="data/rep_incumbents.csv"):
     """Transforms and Loads data into the local databricks database"""
     df = pd.read_table(dataset, delimiter=",", skiprows=1, error_bad_lines=False)
-    df2 = pd.read_csv(dataset2, delimiter=",", skiprows=1, error_bad_lines=False)
+    df2 = pd.read_table(dataset2, delimiter=",", skiprows=1, error_bad_lines=False)
     
     load_dotenv()
     server_h = os.getenv("SERVER_HOSTNAME")
