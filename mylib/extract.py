@@ -21,13 +21,13 @@ def extract(
             f.write(r.content)
     try:
         df = pd.read_csv(file_path2)
+        df_subset = df.head(121)
+        df_subset.to_csv(file_path2, index=False)
     except pd.errors.ParserError as e:
         print(f"Warning: Error parsing CSV file {file_path2}. Error: {e}")
 
-    df_subset = df.head(121)
-
-    df_subset.to_csv(file_path2, index=False)
     return file_path, file_path2
+
 
 
 # extract()
