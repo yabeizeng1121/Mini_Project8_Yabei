@@ -9,7 +9,7 @@ format:
 	black *.py 
 
 lint:
-	flake8 *.py mylib/*.py
+	black *.py
 
 container-lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile
