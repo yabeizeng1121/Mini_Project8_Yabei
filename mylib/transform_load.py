@@ -5,7 +5,7 @@ from databricks import sql
 from dotenv import load_dotenv
 
 def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
-    # 使用csv模块读取CSV文件
+    
     with open(dataset, 'r') as file:
         reader = csv.reader(file)
         df = list(reader)
@@ -13,6 +13,17 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
     with open(dataset2, 'r') as file:
         reader = csv.reader(file)
         df2 = list(reader)
+
+    
+    for row in df[1:]: 
+        values = tuple(row)
+        c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
+
+  
+    for row in df2[1:]:  
+        values = tuple(row)
+        c.execute(f"INSERT INTO showdataDB VALUES {values}")
+
 
     load_dotenv()
     server_h = os.getenv("SERVER_HOSTNAME")
