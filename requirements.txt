@@ -11,3 +11,4 @@ pandas
 python-dotenv
 databricks-sql-connector
 flake8
+black
