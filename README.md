@@ -41,8 +41,6 @@ The tool expects the dataset in the following format:
     This command performs all the above steps in sequence: it extracts the data, loads it to Databricks, and then queries it.
 
 ## Explanation of Query
-# SQL Query Explanation
-
 This SQL query is designed to extract specific information regarding performances from a database called `showdataDB`.
 
 ```sql
