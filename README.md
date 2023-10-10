@@ -43,7 +43,7 @@ The tool expects the dataset in the following format:
 ## Explanation of Query
 # SQL Query Explanation
 
-This SQL query is designed to extract specific information regarding performances from a database called `showdataDB`. Here's a breakdown of each part of the query to understand it in more depth:
+This SQL query is designed to extract specific information regarding performances from a database called `showdataDB`.
 
 ```sql
 SELECT Performer, Show, 
@@ -56,7 +56,7 @@ SELECT Performer, Show,
 ```
 
 
-This query is pulling data from the `showdataDB` table, grouping it by the `Performer` and `Show` columns, calculating the earliest start time and latest end time for each group, sorting these groups by the earliest start time in descending order, and then limiting the result to the first 10 rows of this sorted list. This way, you get a compact list of performer-show pairs along with the range of show times, with the pairs having the latest start times listed first.
+This query is pulling data from the `showdataDB` table, grouping it by the `Performer` and `Show` columns, calculating the earliest start time and latest end time for each group, sorting these groups by the earliest start time in descending order, and then limiting the result to the first 10 rows of this sorted list. This way, we get a compact list of performer-show pairs along with the range of show times, with the pairs having the latest start times listed first.
 
 
 #### Usage:
