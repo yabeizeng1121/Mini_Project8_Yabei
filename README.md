@@ -1,6 +1,6 @@
 [![CI](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/Mini_Project5_Yabei_New/actions/workflows/cicd.yml)
 # Mini Project 6
-The ETL-Query tool is designed to streamline the process of extracting, transforming, loading (ETL) and querying data. It specifically caters to handling the 'cars' dataset. The tool offers flexibility by allowing users to either execute each phase of the ETL process independently or execute the complete ETL process in a single command.
+The ETL-Query tool is designed to streamline the process of extracting, transforming, loading (ETL) and querying data. It specifically caters to handling the 'show_data' dataset and 'performer_score' dataset. The tool offers flexibility by allowing users to either execute each phase of the ETL process independently or execute the complete ETL process in a single command.
 
 ## Requirements
 1. Design a complex SQL query involving joins, aggregation, and sorting.
@@ -18,8 +18,7 @@ The ETL-Query tool is designed to streamline the process of extracting, transfor
 
 ## Check Format
 The tool expects the dataset in the following format:
-- Filename: `cars.csv`
-- Data columns and structure to be confirmed (based on your dataset's structure).
+- Filename: `show_data.csv`, `performer_score.csv`
 
 ## Steps Guide
 1. **Data Extraction**
@@ -73,5 +72,7 @@ The `query.py` script provides functionalities to execute SQL queries on a Datab
         5. Log the executed query and its result using the `add_to_log` function.
    
 ## Results Preview
+![lib](https://github.com/nogibjj/mini_project6_yabei/assets/143656459/0e8483ee-d989-465f-ba6d-dd8ddc9ce4b4)
+![test](https://github.com/nogibjj/mini_project6_yabei/assets/143656459/daa0fb1c-90f5-4855-af3c-35e829eecde0)
 
 
