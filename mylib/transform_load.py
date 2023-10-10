@@ -46,8 +46,9 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
                 continue
             try:
                 c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
-            except Exception as e:
+            except Exception:
                 continue
+
 
         
         # Create showdataDB table if not exists
@@ -70,8 +71,9 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
                 continue
             try:
                 c.execute(f"INSERT INTO showdataDB VALUES {values}")
-            except Exception as e:
+            except Exception:
                 continue
+
 
     
     return "success"
