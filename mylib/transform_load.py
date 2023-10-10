@@ -67,9 +67,14 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Insert data into showdataDB
         for row in df2[1:]:  # Skip the header row
             values = tuple(row)
-            c.execute(f"INSERT INTO showdataDB VALUES {values}")
-        
-        c.close()
+            if not values or len(values) != 5:  # Check if values is empty or does not match the expected length
+                print(f"Skipping invalid row: {row}")
+                continue
+            try:
+                c.execute(f"INSERT INTO showdataDB VALUES {values}")
+            except Exception as e:
+                print(f"Error inserting row {row}: {e}")
+
     
     return "success"
 
