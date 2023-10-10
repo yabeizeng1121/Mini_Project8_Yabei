@@ -42,7 +42,7 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Insert data into performerscoresDB
         for row in df[1:]:  # Skip the header row
             values = tuple(row)
-            if not values or len(values) != 4:  # Check if values is empty or does not match the expected length
+            if not values or len(values) != 4:  
                 print(f"Skipping invalid row: {row}")
                 continue
             try:
