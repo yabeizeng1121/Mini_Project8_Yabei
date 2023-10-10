@@ -41,55 +41,23 @@ The tool expects the dataset in the following format:
     This command performs all the above steps in sequence: it extracts the data, loads it to Databricks, and then queries it.
 
 ## Explanation of Query
-#### Query Script Documentation
-Import Statements:
-```python
-import os
-from databricks import sql
-from dotenv import load_dotenv
-```
-Here, the script imports the necessary libraries:
-- `os`: This module provides a way of using operating system dependent functionality like reading or writing to the file system.
-- `databricks`: This library provides the SQL interface to Databricks.
-- `dotenv`: This module allows you to specify environment variables in a `.env` file, which can then be loaded and accessed within your script.
+# SQL Query Explanation
 
-#### Global Variable:
-```python
-LOG_FILE = "query_log.md"
-```
-A global variable `LOG_FILE` is defined to specify the name of the Markdown file where queries and their responses will be logged.
+This SQL query is designed to extract specific information regarding performances from a database called `showdataDB`. Here's a breakdown of each part of the query to understand it in more depth:
 
-#### log_query Function:
-```python
-def log_query(query, result="none"):
-    """adds to a query markdown file"""
-    with open(LOG_FILE, "a") as file:
-        file.write(f"```sql\n{query}\n```\n\n")
-        file.write(f"```response from databricks\n{result}\n```\n\n")
+```sql
+SELECT Performer, Show, 
+        MIN(Show_Start) AS Earliest_Show_Start,
+        MAX(Show_End) AS Latest_Show_End
+        FROM showdataDB
+        GROUP BY Performer, Show
+        ORDER BY Earliest_Show_Start DESC
+        LIMIT 10;
 ```
-The `log_query` function takes a SQL `query` and its `result` as arguments. It opens the log file in append mode and writes the query and result to it in a formatted manner.
 
-#### general_query Function:
-```python
-def general_query(query):
-    """runs a query a user inputs"""
 
-    load_dotenv()
-    server_h = os.getenv("SERVER_HOSTNAME")
-    access_token = os.getenv("ACCESS_TOKEN")
-    http_path = os.getenv("HTTP_PATH")
-    with sql.connect(
-        server_hostname=server_h,
-        http_path=http_path,
-        access_token=access_token,
-    ) as connection:
-        c = connection.cursor()
-        c.execute(query)
-        result = c.fetchall()
-    c.close()
-    log_query(f"{query}", result)
-```
-The `general_query` function is where the actual interaction with the Databricks database occurs. It first loads environment variables from a `.env` file using `load_dotenv`, then establishes a connection to the Databricks server using the `sql.connect` method. A cursor object is created with `connection.cursor()`, which is then used to execute the given `query` and fetch all results with `c.fetchall()`. Finally, the `log_query` function is called to log the query and its result to the log file.
+This query is pulling data from the `showdataDB` table, grouping it by the `Performer` and `Show` columns, calculating the earliest start time and latest end time for each group, sorting these groups by the earliest start time in descending order, and then limiting the result to the first 10 rows of this sorted list. This way, you get a compact list of performer-show pairs along with the range of show times, with the pairs having the latest start times listed first.
+
 
 #### Usage:
 To utilize this script, you simply need to call the `general_query` function with your SQL query as an argument:
