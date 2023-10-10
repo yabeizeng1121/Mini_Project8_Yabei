@@ -4,6 +4,7 @@ Test goes here
 
 import subprocess
 
+
 def test_extract():
     """tests extract()"""
     result = subprocess.run(
@@ -15,6 +16,7 @@ def test_extract():
     assert result.returncode == 0
     assert "Extracting data..." in result.stdout
 
+
 def test_transform_load():
     """tests transform_load()"""
     result = subprocess.run(
@@ -25,6 +27,7 @@ def test_transform_load():
     )
     assert result.returncode == 0
     assert "Transforming and loading data..." in result.stdout
+
 
 def test_general_query():
     """tests general_query()"""
@@ -46,6 +49,7 @@ def test_general_query():
         check=True,
     )
     assert result.returncode == 0
+
 
 if __name__ == "__main__":
     test_extract()

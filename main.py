@@ -4,6 +4,7 @@ from mylib.extract import extract
 from mylib.transform_load import load
 from mylib.query import general_query
 
+
 def handle_arguments(args):
     """add action based on initial calls"""
     parser = argparse.ArgumentParser(description="ETL-Query script")
@@ -24,6 +25,7 @@ def handle_arguments(args):
     # parse again with every argument
     return parser.parse_args(sys.argv[1:])
 
+
 def main():
     """handles all the cli commands"""
     args = handle_arguments(sys.argv[1:])
@@ -40,6 +42,6 @@ def main():
     else:
         print(f"Unknown action: {args.action}")
 
+
 if __name__ == "__main__":
     main()
-
