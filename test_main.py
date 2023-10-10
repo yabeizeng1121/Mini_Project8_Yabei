@@ -33,7 +33,8 @@ def test_general_query():
             "python",
             "main.py",
             "general_query",
-            """SELECT Performer, Show, MIN(Show_Start) AS Earliest_Show_Start, MAX(Show_End) AS Latest_Show_End
+            """SELECT Performer, Show, 
+            MIN(Show_Start) AS Earliest_Show_Start,MAX(Show_End) AS Latest_Show_End
             FROM showdataDB
             GROUP BY Performer, Show
             ORDER BY Earliest_Show_Start DESC
