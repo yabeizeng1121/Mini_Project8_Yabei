@@ -42,8 +42,7 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Insert data into performerscoresDB
         for row in df[1:]:  # Skip the header row
             values = tuple(row)
-            if not values or len(values) != 4:  
-                print(f"Skipping invalid row: {row}")
+            if not values or len(values) != 4: 
                 continue
             try:
                 c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
@@ -67,8 +66,7 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Insert data into showdataDB
         for row in df2[1:]:  # Skip the header row
             values = tuple(row)
-            if not values or len(values) != 5:  
-                print(f"Skipping invalid row: {row}")
+            if not values or len(values) != 5: 
                 continue
             try:
                 c.execute(f"INSERT INTO showdataDB VALUES {values}")
