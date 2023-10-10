@@ -59,8 +59,6 @@ SELECT Performer, Show,
 This query is pulling data from the `showdataDB` table, grouping it by the `Performer` and `Show` columns, calculating the earliest start time and latest end time for each group, sorting these groups by the earliest start time in descending order, and then limiting the result to the first 10 rows of this sorted list. This way, we get a compact list of performer-show pairs along with the range of show times, with the pairs having the latest start times listed first.
 
 
-#### Usage:
-To utilize this script, you simply need to call the `general_query` function with your SQL query as an argument:
 
 ## Results Preview
 ![lib](https://github.com/nogibjj/mini_project6_yabei/assets/143656459/0e8483ee-d989-465f-ba6d-dd8ddc9ce4b4)
