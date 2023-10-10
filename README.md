@@ -41,10 +41,6 @@ The tool expects the dataset in the following format:
     This command performs all the above steps in sequence: it extracts the data, loads it to Databricks, and then queries it.
 
 ## Explanation of Query
-In order to document and explain the Python script provided, which interfaces with a Databricks SQL database, you can create a Markdown file with the following content:
-
----
-
 #### Query Script Documentation
 Import Statements:
 ```python
