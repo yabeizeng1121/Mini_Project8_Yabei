@@ -41,36 +41,63 @@ The tool expects the dataset in the following format:
     This command performs all the above steps in sequence: it extracts the data, loads it to Databricks, and then queries it.
 
 ## Explanation of Query
-The `query.py` script provides functionalities to execute SQL queries on a Databricks database. It not only executes the queries but also maintains a log of the executed query and its result in a markdown file.
+In order to document and explain the Python script provided, which interfaces with a Databricks SQL database, you can create a Markdown file with the following content:
 
-### Key Components
+---
 
-1. **Imported Libraries**:
-    - `os`: Access environment variables.
-    - `databricks`: Interface with Databricks using SQL.
-    - `dotenv`: Load environment variables from a `.env` file.
+#### Query Script Documentation
+Import Statements:
+```python
+import os
+from databricks import sql
+from dotenv import load_dotenv
+```
+Here, the script imports the necessary libraries:
+- `os`: This module provides a way of using operating system dependent functionality like reading or writing to the file system.
+- `databricks`: This library provides the SQL interface to Databricks.
+- `dotenv`: This module allows you to specify environment variables in a `.env` file, which can then be loaded and accessed within your script.
 
-2. **LOG_PATH**:
-    A global variable specifying the path to the markdown log file where query logs will be maintained.
+#### Global Variable:
+```python
+LOG_FILE = "query_log.md"
+```
+A global variable `LOG_FILE` is defined to specify the name of the Markdown file where queries and their responses will be logged.
 
-3. **`add_to_log(query_str, response="N/A")` Function**:
-    - **Purpose**: Append a provided query and its corresponding response to the markdown log file.
-    - **Parameters**:
-        - `query_str`: The SQL query string that was executed.
-        - `response`: The result of the query. By default, it's set to "N/A".
-    - **Implementation**: The function writes the query and its response in separate code blocks in the markdown file, making it easy to review and understand.
+#### log_query Function:
+```python
+def log_query(query, result="none"):
+    """adds to a query markdown file"""
+    with open(LOG_FILE, "a") as file:
+        file.write(f"```sql\n{query}\n```\n\n")
+        file.write(f"```response from databricks\n{result}\n```\n\n")
+```
+The `log_query` function takes a SQL `query` and its `result` as arguments. It opens the log file in append mode and writes the query and result to it in a formatted manner.
 
-4. **`query(query_str)` Function**:
-    - **Purpose**: Execute a user-provided SQL query on the Databricks database.
-    - **Parameters**:
-        - `query_str`: The SQL query string to be executed.
-    - **Implementation**:
-        1. Load environment variables from a `.env` file.
-        2. Establish a connection to the Databricks server using the loaded credentials.
-        3. Execute the provided SQL query.
-        4. Fetch and return the result of the query.
-        5. Log the executed query and its result using the `add_to_log` function.
-   
+#### general_query Function:
+```python
+def general_query(query):
+    """runs a query a user inputs"""
+
+    load_dotenv()
+    server_h = os.getenv("SERVER_HOSTNAME")
+    access_token = os.getenv("ACCESS_TOKEN")
+    http_path = os.getenv("HTTP_PATH")
+    with sql.connect(
+        server_hostname=server_h,
+        http_path=http_path,
+        access_token=access_token,
+    ) as connection:
+        c = connection.cursor()
+        c.execute(query)
+        result = c.fetchall()
+    c.close()
+    log_query(f"{query}", result)
+```
+The `general_query` function is where the actual interaction with the Databricks database occurs. It first loads environment variables from a `.env` file using `load_dotenv`, then establishes a connection to the Databricks server using the `sql.connect` method. A cursor object is created with `connection.cursor()`, which is then used to execute the given `query` and fetch all results with `c.fetchall()`. Finally, the `log_query` function is called to log the query and its result to the log file.
+
+#### Usage:
+To utilize this script, you simply need to call the `general_query` function with your SQL query as an argument:
+
 ## Results Preview
 ![lib](https://github.com/nogibjj/mini_project6_yabei/assets/143656459/0e8483ee-d989-465f-ba6d-dd8ddc9ce4b4)
 ![test](https://github.com/nogibjj/mini_project6_yabei/assets/143656459/daa0fb1c-90f5-4855-af3c-35e829eecde0)
