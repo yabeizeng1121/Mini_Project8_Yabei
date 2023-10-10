@@ -42,7 +42,14 @@ def load(dataset="data/performer-scores.csv", dataset2="data/show-data.csv"):
         # Insert data into performerscoresDB
         for row in df[1:]:  # Skip the header row
             values = tuple(row)
-            c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
+            if not values or len(values) != 4:  # Check if values is empty or does not match the expected length
+                print(f"Skipping invalid row: {row}")
+                continue
+            try:
+                c.execute(f"INSERT INTO performerscoresDB VALUES {values}")
+            except Exception as e:
+                print(f"Error inserting row {row}: {e}")
+
         
         # Create showdataDB table if not exists
         c.execute(
