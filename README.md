@@ -3,8 +3,10 @@
 The ETL-Query tool is designed to streamline the process of extracting, transforming, loading (ETL) and querying data. It specifically caters to handling the 'show_data' dataset and 'performer_score' dataset. The tool offers flexibility by allowing users to either execute each phase of the ETL process independently or execute the complete ETL process in a single command.
 
 ## Requirements
-1. Design a complex SQL query involving joins, aggregation, and sorting.
-2. Provide an explanation for what the query is doing and the expected results.
+1. Package a Python script with setuptools or a similar tool
+2. Include a user guide on how to install and use the tool
+3. Include communication with an external or internal database (NoSQL, SQL, etc)
+
 
 
 ## Preparation
