@@ -24,7 +24,7 @@ def extract(
         df_subset = df.head(121)
         df_subset.to_csv(file_path2, index=False)
     except Exception:
-        continue
+        pass
 
     return file_path, file_path2
 
