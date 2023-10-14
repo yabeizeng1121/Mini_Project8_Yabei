@@ -23,9 +23,8 @@ def extract(
         df = pd.read_csv(file_path2)
         df_subset = df.head(121)
         df_subset.to_csv(file_path2, index=False)
-    except pd.errors.ParserError as e:
-        #print(f"Warning: Error parsing CSV file {file_path2}. Error: {e}")
-        pass
+    except Exception:
+        continue
 
     return file_path, file_path2
 
