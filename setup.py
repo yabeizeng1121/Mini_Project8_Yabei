@@ -7,10 +7,17 @@ setup(
     author="Your Name",
     packages=find_packages(),
     install_requires=[
-        "requests",
+        "black==22.3.0",
+        "click==8.1.3",
+        "pytest==7.1.3",
+        "pytest-cov==4.0.0",
+        "requests==2.26.0",
+        "ruff==0.0.284",
         "pandas",
-        # Add other dependencies here
+        "python-dotenv",
+        "databricks-sql-connector"
     ],
+
     entry_points={
         "console_scripts": [
             "etl_query=main:main",
