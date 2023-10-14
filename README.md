@@ -59,7 +59,7 @@ This query is pulling data from the `showdataDB` table, grouping it by the `Perf
 
 
 ## Results Preview
-![lib](https://github.com/nogibjj/mini_project6_yabei/assets/143656459/0e8483ee-d989-465f-ba6d-dd8ddc9ce4b4)
-![test](https://github.com/nogibjj/mini_project6_yabei/assets/143656459/daa0fb1c-90f5-4855-af3c-35e829eecde0)
+![7ab07ebad0885621452d55945f99fd6](https://github.com/nogibjj/Mini_Project7_Yabei/assets/143656459/00a35246-ab0d-46cd-9db8-61061a18d5f4)
+
 
 
