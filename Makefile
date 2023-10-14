@@ -44,3 +44,6 @@ transform_load:
 
 query:
 	python main.py general_query "SELECT Name, State, AVG(Donations) as avg_donations FROM DemCandidatesDB GROUP BY Name, State ORDER BY avg_donations DESC LIMIT 10"
+
+setup_package: 
+	python setup.py develop --user
