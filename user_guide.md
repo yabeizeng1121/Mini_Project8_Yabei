@@ -38,6 +38,4 @@ If you encounter issues connecting to the database, ensure your environment vari
 3. **Data Format**:
 Ensure the data you're working with matches the expected format detailed in the `README.md`.
 
-### Feedback and Support
 
-For any issues, feedback, or suggestions, please open an issue on the GitHub repository, and we'll address it promptly.
