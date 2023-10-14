@@ -4,7 +4,7 @@ setup(
     name="ETLQueryTool",
     version="0.1.0",
     description="ETL-Query tool for data processing",
-    author="Your Name",
+    author="Yabei Zeng",
     packages=find_packages(),
     install_requires=[
         "black==22.3.0",
