@@ -15,9 +15,8 @@ setup(
         "ruff==0.0.284",
         "pandas",
         "python-dotenv",
-        "databricks-sql-connector"
+        "databricks-sql-connector",
     ],
-
     entry_points={
         "console_scripts": [
             "etl_query=main:main",
