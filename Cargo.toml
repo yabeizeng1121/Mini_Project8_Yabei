@@ -1,0 +1,10 @@
+[package]
+name = "Mini_Project8_Yabei"
+version = "0.1.0"
+authors = ["Yabei Zeng"]
+edition = "2018"
+
+[dependencies]
+clap = "2.33"
+csv = "1.1"
+reqwest = "0.11"
